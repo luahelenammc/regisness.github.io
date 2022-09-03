@@ -8,7 +8,13 @@
     html, body, a, a:hover {
       cursor:url('/images/mouse.png'), auto !important;
     }
-    
+    @viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+  } 
+  @-ms-viewport {
+  width: device-width ;
+  }
     body {
   font-family: "Arial";
   font-size: 12px;
@@ -100,6 +106,10 @@
   a .outros:hover, a .outros:active {
   box-shadow: 0px 0px 15px 2px #7e34f5;
   }
+    
+     a .jogos:hover, a .jogos:active {
+  box-shadow: 0px 0px 15px 2px #3859ff;
+  }
 
   #icon {  
   }
@@ -122,14 +132,6 @@
 
   .mini_icon {
   max-width: 50px;
-  }
-
-  @viewport {
-  width: device-width ;
-  zoom: 1.0 ;
-  } 
-  @-ms-viewport {
-  width: device-width ;
   }
 
   .zap a:link, .zap a:visited {
@@ -201,7 +203,15 @@
         <div id="description">
           Obras Literárias
         </div>
-      </div></a> <a href="/outros.html">
+      </div></a>
+      <a href="/jogos.html">
+      <div id="element" style="background: linear-gradient(150deg, rgba(56,89,255,1) 0%, rgba(56,174,255,1) 100%);" class="jogos">
+        <div id="icon"><img src="images/ZSNES.png" class="icon" alt="KtwtIOC"></div>
+        <div id="description">
+          Jogos Favoritos
+        </div>
+      </div></a>
+      <a href="/outros.html">
       <div id="element" style="background: linear-gradient(139deg, rgba(126,52,245,1) 0%, rgba(215,101,249,1) 100%);" class="outros">
         <div id="icon"><img src="images/outros.png" class="icon" alt="KtwtIOC"></div>
         <div id="description">
