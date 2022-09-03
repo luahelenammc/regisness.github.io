@@ -17,8 +17,8 @@ scale=1">
 body {
   font-family: "Arial";
   font-size: 12px;
-  background:#1f1f1f;
-  color: white;
+  background:white;
+  color: black;
 }
 #wrapper {
   text-align: center;
@@ -54,25 +54,28 @@ body {
 }
 
 a:link, a:visited {
-  text-decoration: none;
+  text-decoration: decoration;
+color: black;
 }
 
 a:hover, a:active {
   text-decoration: none;
+color:black;
 }
 
 #element {
   display: inline-grid;
-  background: white;
+  background: black;
   border-radius: 20px;
   padding: 15px;
   margin: 5px;
+max-width: 200px;
 }
 
 #description {
   font-weight:bold;
   font-size: 13px;
-  text-shadow: 0 0 10px black, 0 0 5px black;
+  text-shadow: 0 0 10px white, 0 0 5px white;
     color: white;
 }
 
@@ -80,9 +83,14 @@ a #element:hover, a #element:active {
   box-shadow: 0px 0px 15px 2px white;
 }
 
-#description a:hover, #description a:active {
+#description a:link, #description a:visited {
   color:white;
   text-decoration: underline;
+}
+
+#description a:hover, #description a:active {
+  color:white;
+  text-decoration: none;
 }
 
 .icon {
