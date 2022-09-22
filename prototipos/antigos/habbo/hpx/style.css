@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	background-color: #333;
+}
+#tudo {
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 11px;
+	width: 526px;
+}
+#topo {
+	background-image: url(imagens/topo.png);
+	height: 164px;
+	width: 210px;
+	text-align: left;
+	padding-top: 46px;
+	padding-left: 316px;
+}
+#meio {
+	background-image: url(imagens/meio.png);
+	height: 275px;
+	width: 486px;
+	text-align: left;
+	color: #333;
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 11px;
+	padding-top: 7px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+#meio a {
+	color: #FC6204;
+	text-decoration: underline;
+}
+#meio a:hover, link, active {
+	color: #FC6204;
+	text-decoration: underline;
+}
+#painel {
+	height: 90px;
+	width: 185px;
+	color: white;
+	font-family: Tahoma, Verdana, Arial;
+	font-size: 11px;
+}
+#rodape {
+	background-image: url(imagens/rodape.png);
+	height: 14px;
+	width: 526px;
+}
