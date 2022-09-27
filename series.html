@@ -196,6 +196,18 @@ margin-bottom: 15px;
     filter: contrast(1.5);
     }
     
+      #cat {
+    padding: 5px;
+    display: inline-block;
+    margin: 3px;
+    background: #0000007a;
+    border-radius: 10px;
+    }
+    
+    #catlist {
+     font-weight: bold; font-style: italic; font-family: Times; font-size: 15px; 
+    }
+    
   </style>
 </head>
 <body>
@@ -215,8 +227,13 @@ margin-bottom: 15px;
       </div>
     </div>
     <div id="middle">
+      <div id="catlist">
+<div style="font-size:20px">Categorias</div>
+<a href="#series"><div id="cat">Séries de TV</div></a>
+<a href="#desenhos"><div id="cat">Desenhos</div></a>
+</div>
       
-      <div id="category">
+      <div id="category"><a href="#series">
         Séries de TV 
       </div>
       
@@ -421,7 +438,7 @@ margin-bottom: 15px;
               <div><div id="tag">LGBT</div><div id="tag">Ficção Científica</div><div id="tag">Drama</div></div>
       </div>
       
-       <div id="category">
+       <div id="category"><a href="#desenhos">
         Desenhos /
          <br>Animes
       </div>
