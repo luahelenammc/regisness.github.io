@@ -161,6 +161,22 @@ margin-bottom: 15px;
         text-shadow: 0 0 10px black, 0 0 5px black;
       }
     
+       #cat {
+    padding: 5px;
+    display: inline-block;
+    margin: 3px;
+    background: #0000007a;
+    border-radius: 10px;
+    }
+    
+     #cat:hover {
+      background:#ffffff7a;
+    }
+    
+    #catlist {
+     font-weight: bold; font-style: italic; font-family: Times; font-size: 15px; 
+    }
+    
   </style>
 </head>
 <body>
@@ -179,7 +195,18 @@ margin-bottom: 15px;
       </div>
     </div>
     <div id="middle">
-      <div id="category">
+      <div id="catlist">
+<div style="font-size:20px">Categorias</div>
+<a href="#snes"><div id="cat">Super Nintendo</div></a>
+<a href="#ps1"><div id="cat">PlayStation [1]</div></a>
+<a href="#ps2"><div id="cat">PlayStation 2</div></a>
+<a href="#xbox"><div id="cat">Xbox 360</div></a>
+<a href="#navegador"><div id="cat">Navegador (Browser)</div></a>
+<a href="#pc"><div id="cat">Windows (PC)</div></a>
+<a href="#quest2"><div id="cat">Quest 2</div></a>
+</div>
+      
+      <div id="category"><a id="snes"></a>
         <img id="platform" src="images/supern.png" style="display:inline-grid; max-width:120px;"><img id="platform" src="images/ZSNES.png" style="display:inline-grid"><br>
         Super Nintendo
       </div>
@@ -252,10 +279,10 @@ margin-bottom: 15px;
         </div>
       
       </div>
-      <div id="category">
+      <div id="category"><a id="ps1"></a>
         <img id="platform" src="images/ps1.png" style="max-width:144px"><br>
         PlayStation [1]
-<br><a href="https://youtu.be/oAhvQoLpvsM" target="_blank"><img id="platform" src="images/ps1_logo.png" style="max-width:100px"></a>
+<br><a title="Abertura Nostálgica do PS1" href="https://youtu.be/oAhvQoLpvsM" target="_blank"><img id="platform" src="images/ps1_logo.png" style="max-width:100px"></a>
       </div>
       <div id="element">
         <div><img id="pic" src="images/hugo.jpg"></div>
@@ -311,7 +338,7 @@ margin-bottom: 15px;
     </div>
         
     
-      <div id="category">
+      <div id="category"><a id="ps2"></a>
         <img id="platform" src="images/ps2.png"><br>
         PlayStation 2
       </div>
@@ -387,7 +414,7 @@ margin-bottom: 15px;
     
       
       
-    <div id="category">
+    <div id="category"><a id="xbox"></a>
         <img id="platform" src="images/xbox.png" style="max-width:150px;"><br>
         Xbox 360
       </div>
@@ -408,7 +435,7 @@ margin-bottom: 15px;
         </div>
       </div>
     
-    <div id="category">
+    <div id="category"><a id="navegador"></a>
       <img id="platform" src="images/browser.png"><br>
       Navegador
       <br><small style="font-weight:normal;">(Browser)</small>
@@ -433,7 +460,7 @@ margin-bottom: 15px;
         </div>
     
     
-      <div id="category">
+      <div id="category"><a id="pc"></a>
         <img id="platform" src="images/win.png"><br>
         Windows (PC)
       </div>
@@ -546,7 +573,7 @@ margin-bottom: 15px;
   </div>
   
   
-    <div id="category">
+    <div id="category"><a id="quest2"></a>
       <img id="platform" src="images/quest2.png"><br>
       Oculus Quest 2
     </div>
