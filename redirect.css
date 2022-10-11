@@ -2,7 +2,9 @@
 /* CSS Document */
 
 body {
-  background: black;
+  background: url(images/finger.jpg);
+  background-size:50%;
+  background-repeat: repeat;
   color: white;
   font-size: 25px;
   font-family:Garamond, Times New Roman, Times, serif; text-align:center;
