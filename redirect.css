@@ -7,6 +7,16 @@
   @-ms-viewport {
   width: device-width ;
   }
+html, body {
+      cursor:url('/images/mouse.png'), auto !important;
+    }
+    a:hover {
+            cursor:url('/images/select.png'), auto !important;
+    }
+       a:active {
+                cursor:url('/images/wheel.png'), auto !important;
+
+    }
 body {
   background: url(images/finger.jpg);
   background-size:260px;
