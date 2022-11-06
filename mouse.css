@@ -7,6 +7,6 @@ html, body {
             cursor:url('/images/select.png'), auto !important;
     }
        a:active {
-                cursor:url('/images/wheel.gif'), auto !important;
+                cursor:url('/images/wheel.png'), auto !important;
 
     }
