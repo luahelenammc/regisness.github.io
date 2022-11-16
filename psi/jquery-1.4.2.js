@@ -4549,7 +4549,7 @@ var rexclude = /z-?index|font-?weight|opacity|zoom|line-?height/i,
 	rnumpx = /^-?\d+(?:px)?$/i,
 	rnum = /^-?\d/,
 
-	cssShow = { position: "absolute", visibility: "hidden", display:"block" },
+	cssShow = { position: "absolute", visibility: "hidden", display:"inline-block" },
 	cssWidth = [ "Left", "Right" ],
 	cssHeight = [ "Top", "Bottom" ],
 
@@ -5475,7 +5475,7 @@ jQuery.fn.extend({
 						display = elem.css("display");
 
 						if ( display === "none" ) {
-							display = "block";
+							display = "inline-block";
 						}
 
 						elem.remove();
@@ -5735,7 +5735,7 @@ jQuery.fx.prototype = {
 
 		// Set display property to block for height/width animations
 		if ( ( this.prop === "height" || this.prop === "width" ) && this.elem.style ) {
-			this.elem.style.display = "block";
+			this.elem.style.display = "inline-block";
 		}
 	},
 
@@ -5822,7 +5822,7 @@ jQuery.fx.prototype = {
 					this.elem.style.display = old ? old : this.options.display;
 
 					if ( jQuery.css(this.elem, "display") === "none" ) {
-						this.elem.style.display = "block";
+						this.elem.style.display = "inline-block";
 					}
 				}
 
