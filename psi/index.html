@@ -268,6 +268,13 @@ text-align: center;
     }
    
     
+@keyframes blink{
+  0%   {border: orange solid 5px; }
+  25% {border: black solid 5px; }
+  75% {border: white solid 5px; }
+  100% {border: grey solid 5px; }
+  }
+    
   </style>
 </head>
 <body>
@@ -283,7 +290,7 @@ text-align: center;
       <div id="subtitle">
         CRP SP/<span style="color:#ffe700">XXX.XXX<span>
       </div>
-        <div style="margin-top:5px; background:#fdee54db; color: black; max-width:380px; padding: 7px; text-align:center; display: inline-block; font-family: Arial; font-size: 12px; text-shadow: none; border-radius:18px;">
+        <div style="animation: blink 1s linear infinite; margin-top:5px; background:#fdee54db; color: black; max-width:380px; padding: 7px; text-align:center; display: inline-block; font-family: Arial; font-size: 12px; text-shadow: none; border-radius:18px;">
           <img src="/images/construction.png" style="max-width:60px;">
           <br>Os atendimentos <b>ainda <u>não</u></b> estão sendo realizados.
           <br>Só poderão ter início mediante o registro profissional no CRP, o que deve acontecer em <b style="color:#ff3e3e;">Fevereiro/2023</b>.
