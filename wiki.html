@@ -110,59 +110,52 @@ body {
       transform
       -translate-x-1/2
     ">
-  <header class="flex justify-between items-center">
-    <img src="/images/wiki.png" width="auto" height="auto" class="w-20 dark:invert hover:cursor-pointer" />
-    <div style="margin-left:-970px;">| Autobiografia <span style="opacity:0.5">| Janeiro de 2023</span></div>
-    <nav class="flex gap-3">
-      <div class="search-wrapper flex flex-row gap-2 items-start">
-        <input type="text" class="
-              search-input
-              hidden
-              rounded
-              h-full
-              bg-gray-100
-              dark:bg-gray-800 dark:text-gray-300
-              p-1.5
-              shadow-md
-              font-text font-semibold
-              focus:ring-2 focus:ring-blue-500
-            " placeholder="Pesquisar" />
-        <button class="
-              search-icon
-              active:text-blue-500
-              hover:text-blue-500
-              dark:text-gray-300
+ <header style="display: flex; justify-content: space-between; align-items: center;">
+    <img src="/images/wiki.png" width="auto" height="auto" style="width: auto; height: auto; cursor: pointer; filter: invert(1);">
+    <div style="margin-left: -970px;">| Autobiografia <span style="opacity: 0.5;">| Janeiro de 2023</span></div>
+    <nav style="display: flex; gap: 3px;">
+      <div style="display: flex; flex-direction: row; gap: 2px; align-items: start;">
+        <input type="text" style="
+              border-radius: 4px;
+              height: 100%;
+              background-color: #eee;
+              color: #222;
+              padding: 1.5px;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+              font-family: 'Text', sans-serif;
+              font-weight: 600;
+              outline: 0;
+              transition: box-shadow 0.15s ease;
+              &:focus {
+                box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+                outline: 0;
+              }
+            " placeholder="Pesquisar">
+        <button style="
+              color: #0070f3;
+              cursor: pointer;
+              &:hover {
+                color: #0070f3;
+              }
             " onclick="searchToggle();">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 cursor-pointer" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-          </svg>
-        </button>
-      </div>
-
-      <svg xmlns="http://www.w3.org/2000/svg" class="
-            h-10
-            w-10
-            cursor-pointer
-            active:text-blue-500
-            hover:text-blue-500
-            dark:text-gray-300
-          " viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
-      </svg>
-    </nav>
+         <svg xmlns="http://www.w3.org/2000/svg" style="height: 10px; width: 10px; cursor: pointer;" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+</svg>
+</nav>
   </header>
 
   <main>
-    <article class="
-          lg:col-start-1 lg:row-start-1 lg:row-span-full lg:place-self-center
-          xl:col-start-1 xl:col-span-2
-          2xl:place-self-start
+    <article style="
+          grid-column: 1 / -1;
+          grid-row: 1 / -1;
+          align-self: center;
+          grid-column: 1 / 3;
         "><br>
-      <h1 class="text-4xl font-heading font-bold dark:text-gray-300">
+      <h1 style="font-family: 'Heading', sans-serif; font-weight: 700; font-size: 24px; color: #222;">
         Régis Cardoso (Muni)
       </h1>
       <br />
-      <p class="font-text font-medium text-gray-600 dark:text-gray-300">
+      <p style="font-family: 'Text', sans-serif; font-weight: 500; font-size: 16px; color: #666;">
         <b>Régis Cardoso</b> (1996—) nasceu em <b>Limeira (SP)</b>, no dia 25 de Junho de 1996.
         <br><br>Na presente data, Régis está <b>aguardando os prazos burocráticos</b> da Universidade Federal do Paraná (UFPR) para poder <b>colar grau</b> no curso de Psicologia, o qual concluiu em Maio de 2022, e então solicitar o registro no Conselho Regional de Psicologia (CRP), para poder <b>iniciar sua carreira na Psicologia Clínica</b>. Em Julho de 2022, Régis criou um <a href="https://instagram.com/regisc.psi" target="_blank">Instagram</a> (@<a href="https://instagram.com/regisc.psi" target="_blank">RegisC.Psi</a>) para publicar conteúdos relacionados à Psicologia Clínica e aos seus estudos (por conta própria) em Esquizoanálise.
         <br><br>Em suas ocupações secundárias, Régis é:
