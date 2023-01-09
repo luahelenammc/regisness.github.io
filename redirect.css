@@ -7,6 +7,15 @@
   @-ms-viewport {
   width: device-width ;
   }
+@font-face {
+    font-family: 'Sentient';
+    src: url('/fonts/Sentient.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'General Sans';
+    src: url('/fonts/GeneralSans.ttf') format('truetype');
+}
 html, body {
       cursor:url('/images/mouse.png'), auto !important;
     }
@@ -23,7 +32,8 @@ body {
   background-repeat: repeat;
   color: white;
   font-size: 25px;
-  font-family:Garamond, Times New Roman, Times, serif; text-align:center;
+  font-family:'Sentient', sans-serif;
+  text-align:center;
 }
 
 a:link, a:visited {
