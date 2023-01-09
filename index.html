@@ -17,14 +17,24 @@
   <script type="text/javascript" language="javascript" src="js/lytebox.js"></script>
 <link rel="stylesheet" href="js/lytebox.css" type="text/css" media="screen" />
   <link href="/mouse.css" rel="stylesheet" type="text/css" />
-  <style> 
-    @viewport {
+  <style>
+       @viewport {
   width: device-width ;
   zoom: 1.0 ;
   } 
   @-ms-viewport {
   width: device-width ;
   }
+    
+    @font-face {
+    font-family: 'Sentient';
+    src: url('/fonts/Sentient.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'General Sans';
+    src: url('/fonts/GeneralSans.ttf') format('truetype');
+}
     
     /* width */
 ::-webkit-scrollbar {
@@ -49,7 +59,7 @@
 }
     
     body {
-  font-family: "Arial";
+  font-family: 'General Sans', sans-serif;
   font-size: 12px;
   background:#1f1f1f;
   color: white;
@@ -76,17 +86,17 @@ border-radius:25px;
   }
   #title {
   font-size: 60px;
-  font-family: Garamond, Times New Roman, Times, serif;
+  font-family: 'Sentient', sans-serif;
   }
   #title2 {
   font-size: 25px;
-  font-family: Garamond, Times New Roman, Times, serif;
+  font-family: 'Sentient', sans-serif;
   margin-bottom: 15px;
   font-style: italic;
   }
   #subtitle {
   font-size: 20px;
-  font-family: Garamond, Times New Roman, Times, serif;
+  font-family: 'Sentient', sans-serif;
   text-align:center;
   }
   #element {
@@ -191,7 +201,7 @@ border-radius:25px;
   }
 
   #contato_texto {
-  font-family:"Garamond", "Times New Roman";
+  font-family:'Sentient', sans-serif;
   font-size: 35px;
   font-style: italic;
   }
@@ -202,7 +212,7 @@ border-radius:25px;
     
     #translation {
      text-align: center;
-      font-family: Arial;
+      font-family: 'General Sans', sans-serif;
       color: white;
       font-size: 10px;
       margin-top:30px;
