@@ -15,7 +15,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="icon" type="image/x-icon" href="/images/briefcase.png">
 <title>Relógio de Salário</title>
-  <script>
+
+</head>
+<body>
+  
+  <div id="clock">
+  <p id="money">R$ 0,00</p>
+</div>
+
+    <script>
  window.addEventListener('load', function() {
   let options = {
     weekday: 'long',
@@ -91,13 +99,6 @@ function updateEarnedMoney() {
   previousTime = currentTime;
 }
   </script>
-</head>
-<body>
-  
-  <div id="clock">
-  <p id="money">R$ 0,00</p>
-</div>
-
   
 </body>
 </html>
