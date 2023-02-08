@@ -24,5 +24,7 @@
     src: url('/fonts/GeneralSans.ttf') format('truetype');
 }
 
-    }
-   
+@font-face {
+    font-family: 'HelveticaNeue-Medium';
+    src: url('/fonts/HelveticaNeue-Medium.ttf') format('truetype');
+}   
