@@ -98,6 +98,40 @@ function updateEarnedMoney() {
   document.getElementById("earned-money").innerHTML = formattedMoney;
   previousTime = currentTime;
 }
+      
+      
+function updateClock() {
+  currentTime = new Date();
+  
+  if (currentTime >= endWorkHour) {
+    moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
+    return;
+  }
+  
+  if (currentTime >= breakStart && currentTime < breakEnd) {
+    moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
+    return;
+  }
+
+  let elapsedTime = currentTime - startWorkHour;
+  if (currentTime >= breakStart && currentTime < breakEnd) {
+    elapsedTime -= breakHours * 60 * 60 * 1000;
+  }
+  
+  let earnedMoney = elapsedTime / 1000 / 60 / 60 * moneyPerHour;
+  moneyDisplay.innerHTML = `R$ ${earnedMoney.toFixed(2)}`;
+}
+
+function updateEarnedMoney() {
+  currentTime = new Date();
+  if (currentTime >= breakStart && currentTime < breakEnd) {
+    return;
+  }
+  earnedMoney += (currentTime - previousTime) / 1000 * moneyPerHour / 3600;
+  let formattedMoney = earnedMoney.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  document.getElementById("earned-money").innerHTML = formattedMoney;
+  previousTime = currentTime;
+}
   </script>
   
 </body>
