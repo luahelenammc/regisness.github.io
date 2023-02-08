@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    body {
+    background:black;
+     color: #66fc03;
+      font-family: 'HelveticaNeue-Medium';
+    }
+    
+    #clock {
+  font-size: 36px;
+  text-align: center;
+}
+  </style>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="icon" type="image/x-icon" href="/images/briefcase.png">
+<title>Relógio de Trabalho</title>
+
+</head>
+<body>
+  
+  <canvas id="myChart" width="400" height="400"></canvas>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+ 
+
+    <script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'pie',
+data: {
+labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+datasets: [{
+data: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+backgroundColor: ['#00ff00', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000']
+}]
+},
+options: {
+responsive: false,
+legend: {
+display: false
+}
+}
+});
+
+var currentTime = new Date();
+var startWorkHour = 18;
+var endWorkHour = 6;
+var currentHour = currentTime.getHours();
+
+if (currentHour >= startWorkHour || currentHour < endWorkHour) {
+var timeElapsed = currentHour - startWorkHour;
+if (timeElapsed < 0) {
+timeElapsed = 24 + timeElapsed;
+}
+for (var i = 0; i < timeElapsed; i++) {
+myChart.data.datasets[0].data[i] = 1;
+myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
+}
+myChart.update();
+}
+  </script>
+  
+</body>
+</html>
