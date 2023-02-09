@@ -494,17 +494,19 @@ Agendar uma sessão <a href="#warning"><div style="position:absolute;margin-left
     
     <script>
       
-   document.getElementById("submit-button").addEventListener("click", function() {
-var password = document.getElementById("password-input").value;
-var content = document.getElementById("content");
-if (password === "250696") {
-content.style.display = "block";
-document.getElementById("error-message").classList.add("hidden");
-} else {
-content.style.display = "none";
-document.getElementById("error-message").classList.remove("hidden");
-}
+document.getElementById("submit-button").addEventListener("click", function() {
+  var password = document.getElementById("password-input").value;
+  var content = document.getElementById("content");
+  if (password === "250696") {
+    content.style.display = "block";
+    document.querySelector(".password-container").style.display = "none";
+    document.getElementById("error-message").classList.add("hidden");
+  } else {
+    content.style.display = "none";
+    document.getElementById("error-message").classList.remove("hidden");
+  }
 });
+
 
       
     </script>
