@@ -349,6 +349,9 @@ button {
       <button id="submit-button">Enviar</button>
       <p id="error-message" class="hidden">Senha incorreta. Tente novamente.</p>
     </div>
+  
+  <div id="content" style="display: none;">
+    
   <div id="wrapper">
     <div id="top">
       <div><img src="/psi/psisymbol.png" style="max-width:300px;"></div>
@@ -485,15 +488,22 @@ Agendar uma sessão <a href="#warning"><div style="position:absolute;margin-left
       </div>
     </div>
   </div>
+    
+    
+    </div>
+    
     <script>
       
-      document.getElementById("submit-button").addEventListener("click", function() {
-  var password = document.getElementById("password-input").value;
-  if (password === "250696") {
-    // Ação para desbloquear a página (por exemplo, redirecionar para outra página)
-  } else {
-    document.getElementById("error-message").classList.remove("hidden");
-  }
+   document.getElementById("submit-button").addEventListener("click", function() {
+var password = document.getElementById("password-input").value;
+var content = document.getElementById("content");
+if (password === "250696") {
+content.style.display = "block";
+document.getElementById("error-message").classList.add("hidden");
+} else {
+content.style.display = "none";
+document.getElementById("error-message").classList.remove("hidden");
+}
 });
 
       
