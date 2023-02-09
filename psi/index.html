@@ -290,9 +290,65 @@ text-align: center;
   100% {border: grey solid 5px; }
   }
     
+    
+    
+    
+    body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.password-container {
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  padding: 20px;
+  text-align: left;
+  width: 300px;
+}
+
+input[type="password"] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px;
+  width: 90%;
+}
+
+button {
+  background-color: #250696;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+  margin-top:10px;
+}
+
+#error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+    
   </style>
 </head>
 <body>
+   <div class="password-container">
+      <h2>Senha:</h2>
+      <input type="password" id="password-input">
+      <button id="submit-button">Enviar</button>
+      <p id="error-message" class="hidden">Senha incorreta. Tente novamente.</p>
+    </div>
   <div id="wrapper">
     <div id="top">
       <div><img src="/psi/psisymbol.png" style="max-width:300px;"></div>
@@ -429,5 +485,18 @@ Agendar uma sessão <a href="#warning"><div style="position:absolute;margin-left
       </div>
     </div>
   </div>
+    <script>
+      
+      document.getElementById("submit-button").addEventListener("click", function() {
+  var password = document.getElementById("password-input").value;
+  if (password === "250696") {
+    // Ação para desbloquear a página (por exemplo, redirecionar para outra página)
+  } else {
+    document.getElementById("error-message").classList.remove("hidden");
+  }
+});
+
+      
+    </script>
 </body>
 </html>
