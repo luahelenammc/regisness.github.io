@@ -25,114 +25,50 @@
 </div>
 
     <script>
- window.addEventListener('load', function() {
-  let options = {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric'
-  };
-  document.getElementById("current-time").innerHTML = new Date().toLocaleDateString('pt-BR', options);
-});
-
-
-const moneyPerHour = 12.69;
+ const moneyPerHour = 12.69;
 const workHours = 11;
 const breakHours = 1;
 const totalHours = workHours + breakHours;
 const totalMoney = moneyPerHour * workHours;
 const updateInterval = 1000;
+const maxMoney = 139.65;
 
 let currentTime = new Date();
 let startWorkHour = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 18, 0, 0);
-let endWorkHour = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() + 1, 6, 0, 0);
+let endWorkHour = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 23, 20, 0);
 let breakStart = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 23, 20, 0);
-let breakEnd = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 0, 20, 0);
+let breakEnd = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() + 1, 0, 20, 0);
 
 if (currentTime < startWorkHour) {
   startWorkHour.setDate(startWorkHour.getDate() - 1);
-}
-
-if (currentTime >= endWorkHour) {
-  startWorkHour.setDate(startWorkHour.getDate() + 1);
-  endWorkHour.setDate(endWorkHour.getDate() + 1);
-  breakStart.setDate(breakStart.getDate() + 1);
-  breakEnd.setDate(breakEnd.getDate() + 1);
 }
 
 const moneyDisplay = document.querySelector("#money");
 
 function updateClock() {
   currentTime = new Date();
-  
-  if (currentTime >= endWorkHour) {
+
+  if (currentTime >= endWorkHour || currentTime < startWorkHour) {
+    moneyDisplay.innerHTML = `R$ ${maxMoney.toFixed(2)}`;
+    return;
+  }
+
+  if (currentTime >= breakStart && currentTime < breakEnd) {
     moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
     return;
   }
 
   let elapsedTime = currentTime - startWorkHour;
-  if (currentTime >= breakStart && currentTime < breakEnd) {
-    elapsedTime -= breakHours * 60 * 60 * 1000;
-  }
-  
   let earnedMoney = elapsedTime / 1000 / 60 / 60 * moneyPerHour;
+  if (earnedMoney > maxMoney) {
+    earnedMoney = maxMoney;
+  }
+
   moneyDisplay.innerHTML = `R$ ${earnedMoney.toFixed(2)}`;
 }
 
 setInterval(updateClock, updateInterval);
 
-
-if (currentTime >= endWorkHour && currentTime < resetHour) {
-  startWorkHour.setDate(startWorkHour.getDate() + 1);
-  endWorkHour.setDate(endWorkHour.getDate() + 1);
-  resetHour.setDate(resetHour.getDate() + 1);
-  earnedMoney = 0;
-}
-
-function updateEarnedMoney() {
-  currentTime = new Date();
-  earnedMoney += (currentTime - previousTime) / 1000 * moneyPerHour / 3600;
-  let formattedMoney = earnedMoney.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  document.getElementById("earned-money").innerHTML = formattedMoney;
-  previousTime = currentTime;
-}
-      
-      
-function updateClock() {
-  currentTime = new Date();
-  
-  if (currentTime >= endWorkHour) {
-    moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
-    return;
-  }
-  
-  if (currentTime >= breakStart && currentTime < breakEnd) {
-    moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
-    return;
-  }
-
-  let elapsedTime = currentTime - startWorkHour;
-  if (currentTime >= breakStart && currentTime < breakEnd) {
-    elapsedTime -= breakHours * 60 * 60 * 1000;
-  }
-  
-  let earnedMoney = elapsedTime / 1000 / 60 / 60 * moneyPerHour;
-  moneyDisplay.innerHTML = `R$ ${earnedMoney.toFixed(2)}`;
-}
-
-function updateEarnedMoney() {
-  currentTime = new Date();
-  if (currentTime >= breakStart && currentTime < breakEnd) {
-    return;
-  }
-  earnedMoney += (currentTime - previousTime) / 1000 * moneyPerHour / 3600;
-  let formattedMoney = earnedMoney.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-  document.getElementById("earned-money").innerHTML = formattedMoney;
-  previousTime = currentTime;
-}
   </script>
   
 </body>
