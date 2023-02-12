@@ -7,10 +7,16 @@
       font-family: 'HelveticaNeue-Medium';
     }
     
-    #clock {
-      font-size: 70px;
+#salario {
+  font-size: 50px;
+  text-align: center; 
+}
+
+#relogio {
+  font-size: 36px;
   text-align: center;
 }
+
   </style>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,47 +26,38 @@
 </head>
 <body>
   
-  <div id="clock">
-  <p id="money">R$ 0,00</p>
-</div>
+  <p id="salario">R$ 0,00</p>
+  <p id="relogio"></p>
+
+<div align="center">Considerando as 12 horas, sem horas de descanso</div>
 
     <script>
-const moneyPerHour = 12.69;
-const workHours = 11;
-const breakHours = 1;
-const totalHours = workHours + breakHours;
-const totalMoney = moneyPerHour * workHours;
-const updateInterval = 1000;
-const maxMoney = 139.65;
+const salario = document.querySelector("#salario");
+const relogio = document.querySelector("#relogio");
 
-let currentTime = new Date();
-let startWorkHour = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 18, 0, 0);
-let endWorkHour = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 23, 20, 0);
-let breakStart = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 23, 20, 0);
-let breakEnd = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate() + 1, 0, 20, 0);
+const valorPorHora = 12.69;
+const horaInicio = 18;
+const horaFim = 6;
+const valorMaximo = 139.65;
 
-if (currentTime < startWorkHour) {
-  startWorkHour.setDate(startWorkHour.getDate() - 1);
-}
+setInterval(() => {
+  let data = new Date();
+  let horaAtual = data.getHours() + data.getMinutes() / 60;
+  let valor = 0;
 
-const moneyDisplay = document.querySelector("#money");
+  relogio.textContent = data.toLocaleTimeString();
 
-const updateClock = () => {
-  currentTime = new Date();
-  if (currentTime >= startWorkHour && currentTime <= endWorkHour) {
-    let elapsedTime = currentTime - startWorkHour;
-    if (currentTime >= breakStart && currentTime < breakEnd) {
-      elapsedTime -= breakHours * 60 * 60 * 1000;
-    }
-    let earnedMoney = elapsedTime / 1000 / 60 / 60 * moneyPerHour;
-    moneyDisplay.innerHTML = `R$ ${earnedMoney.toFixed(2)}`;
-  } else {
-    moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
+  if (horaAtual >= horaInicio || horaAtual < horaFim) {
+    valor = (horaAtual - horaInicio + 24) % 24 * valorPorHora;
   }
-};
 
-updateClock();
-setInterval(updateClock, updateInterval);
+  if (valor > valorMaximo) {
+    valor = valorMaximo;
+  }
+
+  salario.textContent = `R$ ${valor.toFixed(2)}`;
+}, 1000);
+
 
   </script>
   
