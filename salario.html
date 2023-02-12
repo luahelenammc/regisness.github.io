@@ -26,7 +26,7 @@
 </head>
 <body>
   
-  <p id="salario">R$ 0,00</p>
+ <p id="salario">R$ 0,00</p>
   <p id="relogio"></p>
 
 <div align="center">Considerando as 12 horas, sem horas de descanso</div>
@@ -35,7 +35,7 @@
 const salario = document.querySelector("#salario");
 const relogio = document.querySelector("#relogio");
 
-const valorPorHora = 12.69;
+const valorPorHora = 11.6375;
 const horaInicio = 18;
 const horaFim = 6;
 const valorMaximo = 139.65;
@@ -57,7 +57,6 @@ setInterval(() => {
 
   salario.textContent = `R$ ${valor.toFixed(2)}`;
 }, 1000);
-
 
   </script>
   
