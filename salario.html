@@ -25,7 +25,7 @@
 </div>
 
     <script>
- const moneyPerHour = 12.69;
+const moneyPerHour = 12.69;
 const workHours = 11;
 const breakHours = 1;
 const totalHours = workHours + breakHours;
@@ -45,28 +45,21 @@ if (currentTime < startWorkHour) {
 
 const moneyDisplay = document.querySelector("#money");
 
-function updateClock() {
+const updateClock = () => {
   currentTime = new Date();
-
-  if (currentTime >= endWorkHour || currentTime < startWorkHour) {
-    moneyDisplay.innerHTML = `R$ ${maxMoney.toFixed(2)}`;
-    return;
-  }
-
-  if (currentTime >= breakStart && currentTime < breakEnd) {
+  if (currentTime >= startWorkHour && currentTime <= endWorkHour) {
+    let elapsedTime = currentTime - startWorkHour;
+    if (currentTime >= breakStart && currentTime < breakEnd) {
+      elapsedTime -= breakHours * 60 * 60 * 1000;
+    }
+    let earnedMoney = elapsedTime / 1000 / 60 / 60 * moneyPerHour;
+    moneyDisplay.innerHTML = `R$ ${earnedMoney.toFixed(2)}`;
+  } else {
     moneyDisplay.innerHTML = `R$ ${totalMoney.toFixed(2)}`;
-    return;
   }
+};
 
-  let elapsedTime = currentTime - startWorkHour;
-  let earnedMoney = elapsedTime / 1000 / 60 / 60 * moneyPerHour;
-  if (earnedMoney > maxMoney) {
-    earnedMoney = maxMoney;
-  }
-
-  moneyDisplay.innerHTML = `R$ ${earnedMoney.toFixed(2)}`;
-}
-
+updateClock();
 setInterval(updateClock, updateInterval);
 
   </script>
