@@ -16,13 +16,13 @@
 
 </head>
 <body>
-  
+  <div align="center">
  <canvas id="myChart" width="400" height="400"></canvas>
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
   
-<div align="center">BETA</div>
+  </div>
 
     <script>
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -32,7 +32,7 @@ var myChart = new Chart(ctx, {
     labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00','12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00','00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
     datasets: [{
       data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#ffc400', '#ff9100']
+      backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#faffad', '#faffad', '#faffad', '#ffc400', '#ff9100']
     }]
   },
   options: {
@@ -61,7 +61,6 @@ if (elapsedTime >= 0) {
   }
   myChart.update();
 }
-
   </script>
   
 </body>
