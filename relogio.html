@@ -63,6 +63,8 @@ var currentHour = currentTime.getHours();
 
 if (currentHour < startWorkHour) {
   currentHour += 24;
+} else if (currentHour >= endWorkHour) { // changed to "else if" to avoid double-counting the same interval
+  currentHour -= 24; // added to reset the currentHour to the previous day if it's later than the endWorkHour
 }
 
 if (currentHour >= startWorkHour || currentHour < endWorkHour) {
