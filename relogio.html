@@ -29,20 +29,27 @@
     <script>
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
-type: 'pie',
-data: {
-labels: ['18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
-datasets: [{
-data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-backgroundColor: ['#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000', '#990000']
-}]
-},
-options: {
-responsive: false,
-legend: {
-display: false
-}
-}
+  type: 'pie',
+  data: {
+    labels: [
+      '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45',
+      '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45',
+      '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45',
+      '00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45',
+      '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45',
+      '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45'
+    ],
+    datasets: [{
+      data: new Array(48).fill(0),
+      backgroundColor: new Array(48).fill('#990000')
+    }]
+  },
+  options: {
+    responsive: false,
+    legend: {
+      display: false
+    }
+  }
 });
 
 var currentTime = new Date();
@@ -50,17 +57,26 @@ var startWorkHour = 18;
 var endWorkHour = 6;
 var currentHour = currentTime.getHours();
 
-if (currentHour >= startWorkHour || currentHour < endWorkHour) {
-var timeElapsed = currentHour - startWorkHour;
-if (timeElapsed < 0) {
-timeElapsed = 24 + timeElapsed;
+if (currentHour < startWorkHour) {
+  currentHour += 24;
 }
-for (var i = 0; i < timeElapsed; i++) {
-myChart.data.datasets[0].data[i] = 1;
-myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
+
+if (currentHour >= startWorkHour || currentHour < endWorkHour) {
+  var timeElapsed = (currentHour - startWorkHour) * 4; // multiply by 4 to get 15-minute intervals
+  for (var i = 0; i < timeElapsed; i++) {
+    myChart.data.datasets[0].data[i] = 1;
+    myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
+  }
+  myChart.update();
+}
+
+// Add these lines to fill the remaining time slots with a light gray color
+for (var i = timeElapsed; i < 48; i++) {
+  myChart.data.datasets[0].data[i] = 1;
+  myChart.data.datasets[0].backgroundColor[i] = '#dddddd';
 }
 myChart.update();
-}
+
   </script>
   
 </body>
