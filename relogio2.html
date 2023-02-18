@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+  <style>
+    body {
+    background:black;
+     color: #66fc03;
+      font-family: 'HelveticaNeue';
+    }
+    
+    #clock {
+  font-size: 36px;
+  text-align: center;
+}
+  </style>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="icon" type="image/x-icon" href="/images/briefcase.png">
+<title>Relógio de Trabalho</title>
+
+</head>
+<body>
+  
+  <div align="center">
+  <canvas id="myChart" width="400" height="400"></canvas>
+    
+    <br><br>
+    <a href="/salario.html" target="_blank">Relógio de Salário</a>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+ 
+
+    <script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: [
+      '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45',
+      '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45',
+      '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45',
+      '00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45',
+      '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45',
+      '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45'
+    ],
+    datasets: [{
+      data: new Array(48).fill(0),
+      backgroundColor: new Array(48).fill('#990000')
+    }]
+  },
+  options: {
+    responsive: false,
+    legend: {
+      display: false
+    }
+  }
+});
+
+var currentTime = new Date();
+var startWorkHour = 18;
+var endWorkHour = 6;
+var currentHour = currentTime.getHours();
+
+if (currentHour < startWorkHour) {
+  currentHour += 24;
+}
+
+if (currentHour >= startWorkHour || currentHour < endWorkHour) {
+  var timeElapsed = (currentHour - startWorkHour) * 4; // multiply by 4 to get 15-minute intervals
+  for (var i = 0; i < timeElapsed; i++) {
+    myChart.data.datasets[0].data[i] = 1;
+    myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
+  }
+  myChart.update();
+}
+
+// Add these lines to fill the remaining time slots with a light gray color
+for (var i = timeElapsed; i < 48; i++) {
+  myChart.data.datasets[0].data[i] = 1;
+  myChart.data.datasets[0].backgroundColor[i] = '#dddddd';
+}
+myChart.update();
+
+
+  </script>
+  
+</body>
+</html>
