@@ -60,28 +60,27 @@ var currentTime = new Date();
 var startWorkHour = 18;
 var endWorkHour = 6;
 var currentHour = currentTime.getHours();
+var currentMinute = currentTime.getMinutes();
+var timeElapsed = 0;
 
 if (currentHour < startWorkHour) {
   currentHour += 24;
-} else if (currentHour >= endWorkHour) { // changed to "else if" to avoid double-counting the same interval
-  currentHour -= 24; // added to reset the currentHour to the previous day if it's later than the endWorkHour
 }
 
 if (currentHour >= startWorkHour || currentHour < endWorkHour) {
-  var timeElapsed = (currentHour - startWorkHour) * 4; // multiply by 4 to get 15-minute intervals
-  for (var i = 0; i < timeElapsed; i++) {
+  timeElapsed = (currentHour - startWorkHour) * 60 + currentMinute;
+  var intervalsElapsed = Math.floor(timeElapsed / 15);
+  for (var i = intervalsElapsed; i < 48; i++) {
+    myChart.data.datasets[0].data[i] = 1;
+    myChart.data.datasets[0].backgroundColor[i] = '#dddddd';
+  }
+  for (var i = 0; i < intervalsElapsed; i++) {
     myChart.data.datasets[0].data[i] = 1;
     myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
   }
   myChart.update();
 }
 
-// Add these lines to fill the remaining time slots with a light gray color
-for (var i = timeElapsed; i < 48; i++) {
-  myChart.data.datasets[0].data[i] = 1;
-  myChart.data.datasets[0].backgroundColor[i] = '#dddddd';
-}
-myChart.update();
 
 
   </script>
