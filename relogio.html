@@ -31,7 +31,9 @@
  
 
     <script>
-var ctx = document.getElementById('myChart').getContext('2d');
+
+      
+      var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
@@ -70,17 +72,20 @@ if (currentHour < startWorkHour) {
 if (currentHour >= startWorkHour || currentHour < endWorkHour) {
   timeElapsed = (currentHour - startWorkHour) * 60 + currentMinute;
   var intervalsElapsed = Math.floor(timeElapsed / 15);
-  for (var i = intervalsElapsed; i < 48; i++) {
+  for (var i = intervalsElapsed + 1; i < 48; i++) {
     myChart.data.datasets[0].data[i] = 1;
     myChart.data.datasets[0].backgroundColor[i] = '#dddddd';
   }
-  for (var i = 0; i < intervalsElapsed; i++) {
+  for (var i = 0; i <= intervalsElapsed; i++) {
+    if(i == intervalsElapsed) {
+      myChart.data.datasets[0].backgroundColor[i] = '#00ffff';
+    } else {
+      myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
+    }
     myChart.data.datasets[0].data[i] = 1;
-    myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
   }
   myChart.update();
 }
-
 
 
   </script>
