@@ -26,16 +26,21 @@
 </head>
 <body>
   
- <p id="salario">R$ 0,00</p>
-  <p id="relogio"></p>
-
-<div align="center">Considerando as 12 horas, sem a hora de descanso
-  
+ <div align="center">
+  <br>
+  <div id="salario">R$ 0,00</div>
+<br>
+  <div id="porcentagem">0%</div>
   <br><br>
+  <div id="relogio"></div>
+  <br><br>
+<div>Considerando as 12 horas, sem horas de descanso</div>
+</div>
   
   <a href="/relogio.html" target="_blank">Relógio</a></div>
 
     <script>
+      
 const salario = document.querySelector("#salario");
 const relogio = document.querySelector("#relogio");
 
@@ -60,6 +65,29 @@ setInterval(() => {
   }
 
   salario.textContent = `R$ ${valor.toFixed(2)}`;
+}, 1000);
+
+const porcentagem = document.querySelector("#porcentagem");
+
+setInterval(() => {
+  let data = new Date();
+  let horaAtual = data.getHours() + data.getMinutes() / 60;
+  let valor = 0;
+
+  relogio.textContent = data.toLocaleTimeString();
+
+  if (horaAtual >= horaInicio || horaAtual < horaFim) {
+    valor = (horaAtual - horaInicio + 24) % 24 * valorPorHora;
+  }
+
+  if (valor > valorMaximo) {
+    valor = valorMaximo;
+  }
+
+  salario.textContent = `R$ ${valor.toFixed(2)}`;
+
+  let percentual = valor / valorMaximo * 100;
+  porcentagem.textContent = `${percentual.toFixed(2)}%`;
 }, 1000);
 
   </script>
