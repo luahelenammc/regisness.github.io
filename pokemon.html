@@ -133,8 +133,8 @@
       <span class="green"><a href="#top">↑ Retornar ao topo da página</a></span>
     </div>
   </div>
-
-  <script>
+  
+ <script>
     function extractPokemonName(filename) {
       var decodedName = decodeURIComponent(filename);
       var startIndex = decodedName.lastIndexOf("/") + 1;
@@ -170,7 +170,14 @@
       var middleDiv = document.getElementById("middle");
 
       var imagesPath = "images/pokemon/";
-      var images = ["Celebi%20(Shiny).png", "Rayquaza%20(Mega).png"]; // Adicione aqui os nomes dos arquivos de imagem
+      var images = [
+        "Mew.png",
+        "Shiny%20Mew.png",
+        "Shiny%20Celebi.png",
+        "Celebi.png",
+        "Rayquaza%20(Mega).png",
+        // Adicione aqui os nomes dos arquivos de imagem
+      ];
 
       images.forEach(function (image) {
         var imgSrc = imagesPath + image;
