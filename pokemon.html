@@ -125,13 +125,8 @@
       (Topo)
     </div>
 
-    <div id="middle">
-      <div id="element">
-        <div><img id="pic" src="images/pokemon/Shiny%20Celebi.png"></div>
-        <div id="description">
-          <div id="name" class="pokemon-name"></div>
-        </div>
-      </div>
+     <div id="middle">
+      <!-- A divs com id "element" serão adicionadas aqui dinamicamente -->
     </div>
 
     <div id="bottom">
@@ -140,24 +135,61 @@
   </div>
 
   <script>
-    // Função para extrair o nome do arquivo e atualizar o nome do Pokémon
     function extractPokemonName(filename) {
-      var decodedName = decodeURIComponent(filename); // Decodifica o nome do arquivo (ex: Celebi%20(Shiny).png -> Celebi (Shiny).png)
-      var startIndex = decodedName.lastIndexOf("/") + 1; // Encontra a última barra '/' no caminho do arquivo
-      var endIndex = decodedName.lastIndexOf("."); // Encontra o último ponto '.' no nome do arquivo (antes da extensão)
-      var pokemonName = decodedName.substring(startIndex, endIndex); // Extrai o nome do arquivo sem o caminho e a extensão
+      var decodedName = decodeURIComponent(filename);
+      var startIndex = decodedName.lastIndexOf("/") + 1;
+      var endIndex = decodedName.lastIndexOf(".");
+      var pokemonName = decodedName.substring(startIndex, endIndex);
       return pokemonName;
     }
 
-    // Atualiza o nome do Pokémon para cada elemento
-    var elements = document.querySelectorAll("#element");
-    for (var i = 0; i < elements.length; i++) {
-      var imgElement = elements[i].querySelector("img");
-      var imgSrc = imgElement.getAttribute("src");
+    function createPokemonElement(imgSrc) {
       var pokemonName = extractPokemonName(imgSrc);
-      var nameElement = elements[i].querySelector(".pokemon-name"); // Alterado o seletor para a classe .pokemon-name
-      nameElement.textContent = pokemonName;
+      var elementDiv = document.createElement("div");
+      elementDiv.id = "element";
+
+      var imgDiv = document.createElement("div");
+      var imgElement = document.createElement("img");
+      imgElement.src = imgSrc;
+      imgElement.alt = "Imagem do Pokémon";
+      imgDiv.appendChild(imgElement);
+      elementDiv.appendChild(imgDiv);
+
+      var descriptionDiv = document.createElement("div");
+      descriptionDiv.id = "description";
+      var nameDiv = document.createElement("div");
+      nameDiv.id = "name";
+      nameDiv.textContent = pokemonName;
+      descriptionDiv.appendChild(nameDiv);
+      elementDiv.appendChild(descriptionDiv);
+
+      return elementDiv;
     }
+
+    function loadPokemonElements() {
+      var middleDiv = document.getElementById("middle");
+
+      var imagesPath = "images/pokemon/";
+      var images = ["Celebi%20(Shiny).png", "Rayquaza%20(Mega).png"]; // Adicione aqui os nomes dos arquivos de imagem
+
+      images.forEach(function (image) {
+        var imgSrc = imagesPath + image;
+        var elementDiv = createPokemonElement(imgSrc);
+        middleDiv.appendChild(elementDiv);
+      });
+
+      // Atualiza o nome do Pokémon para cada elemento
+      var elements = document.querySelectorAll("#element");
+      for (var i = 0; i < elements.length; i++) {
+        var imgElement = elements[i].querySelector("img");
+        var imgSrc = imgElement.getAttribute("src");
+        var pokemonName = extractPokemonName(imgSrc);
+        var nameElement = elements[i].querySelector("#name");
+        nameElement.textContent = pokemonName;
+      }
+    }
+
+    loadPokemonElements();
   </script>
 </body>
 </html>
