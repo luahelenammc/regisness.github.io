@@ -173,6 +173,7 @@
       var images = [
         "Mew.png",
         "Shiny%20Mew.png",
+        "<br>", // Marcador para quebra de linha
         "Shiny%20Celebi.png",
         "Celebi.png",
         "Rayquaza%20(Mega).png",
@@ -180,9 +181,14 @@
       ];
 
       images.forEach(function (image) {
-        var imgSrc = imagesPath + image;
-        var elementDiv = createPokemonElement(imgSrc);
-        middleDiv.appendChild(elementDiv);
+        if (image === "<br>") {
+          var brElement = document.createElement("br");
+          middleDiv.appendChild(brElement);
+        } else {
+          var imgSrc = imagesPath + image;
+          var elementDiv = createPokemonElement(imgSrc);
+          middleDiv.appendChild(elementDiv);
+        }
       });
 
       // Atualiza o nome do Pokémon para cada elemento
