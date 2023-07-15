@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="/mouse.css" rel="stylesheet" type="text/css" />
+  <link href="/common.css" rel="stylesheet" type="text/css" />
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2XTDS6RGCZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-2XTDS6RGCZ');
+</script>
+  
+  <title>Meus Pokémons</title>
+  <link rel="icon" type="image/x-icon" href="images/pokeball.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  
+    
+    /* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #00ff99; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc99; 
+}
+
+     body {
+    font-family: 'General Sans', sans-serif;
+    font-size: 12px;
+    background: #1a1a1a;
+    color: white;
+    text-shadow: 0px 0px 6px black;
+  }
+
+  #wrapper {
+    text-align: center;
+    width: 100%;
+  }
+
+  #top {
+    text-align: center;
+    margin: 10px 0 10px 0;
+  }
+
+  #middle {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  #bottom {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  a:link, a:visited {
+    text-decoration: none;
+    color: white;
+  }
+
+  a:hover, a:active {
+    text-decoration: none;
+    color: black;
+    text-shadow: 0 0 50px white, 0 0 5px white;
+  }
+
+  #element {
+    display: inline-grid;
+    background: #e6e6e6;
+    border-radius: 20px;
+    padding: 15px;
+    margin: 5px;
+    font-size: 20px;
+    font-family: 'Sentient', sans-serif;
+    font-weight: bold;
+    max-width: 300px;
+  }
+
+  #name {
+    font-size: 35px;
+    font-style: italic;
+  }
+
+  #description {
+    font-weight: bold;
+    color: black;
+    text-shadow: none;
+  }
+
+  #element:hover, #element:active {
+    box-shadow: 0px 0px 15px 2px #e6e6e6;
+    text-shadow: 0 0 10px white, 0 0 5px white;
+  }
+
+  #description a:link, #description a:visited {
+    color: black;
+    text-decoration: underline;
+  }
+
+  #description a:hover, #description a:active {
+    text-decoration: none;
+    text-shadow: none;
+  }
+
+  </style>
+</head>
+<body>
+  <a name="top"></a>
+  <div id="wrapper">
+    <div id="top">
+      (Topo)
+    </div>
+
+    <div id="middle">
+      <div id="element">
+        <div><img id="pic" src="images/pokemon/Celebi%20(Shiny).png"></div>
+        <div id="description">
+          <div id="name" class="pokemon-name"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottom">
+      <span class="green"><a href="#top">↑ Retornar ao topo da página</a></span>
+    </div>
+  </div>
+
+  <script>
+    // Função para extrair o nome do arquivo e atualizar o nome do Pokémon
+    function extractPokemonName(filename) {
+      var decodedName = decodeURIComponent(filename); // Decodifica o nome do arquivo (ex: Celebi%20(Shiny).png -> Celebi (Shiny).png)
+      var startIndex = decodedName.lastIndexOf("/") + 1; // Encontra a última barra '/' no caminho do arquivo
+      var endIndex = decodedName.lastIndexOf("."); // Encontra o último ponto '.' no nome do arquivo (antes da extensão)
+      var pokemonName = decodedName.substring(startIndex, endIndex); // Extrai o nome do arquivo sem o caminho e a extensão
+      return pokemonName;
+    }
+
+    // Atualiza o nome do Pokémon para cada elemento
+    var elements = document.querySelectorAll("#element");
+    for (var i = 0; i < elements.length; i++) {
+      var imgElement = elements[i].querySelector("img");
+      var imgSrc = imgElement.getAttribute("src");
+      var pokemonName = extractPokemonName(imgSrc);
+      var nameElement = elements[i].querySelector(".pokemon-name"); // Alterado o seletor para a classe .pokemon-name
+      nameElement.textContent = pokemonName;
+    }
+  </script>
+</body>
+</html>
