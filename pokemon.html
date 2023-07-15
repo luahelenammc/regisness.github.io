@@ -5,7 +5,10 @@
   <link href="/common.css" rel="stylesheet" type="text/css" />
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2XTDS6RGCZ"></script>
-<script>
+
+  <script src="https://cdn.jsdelivr.net/npm/colorthief@2.3.2/dist/color-thief.min.js"></script>
+
+  <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -163,42 +166,42 @@ background: white;
     </div>
   </div>
   
- <script>
-    function extractPokemonName(filename) {
-      var decodedName = decodeURIComponent(filename);
-      var startIndex = decodedName.lastIndexOf("/") + 1;
-      var endIndex = decodedName.lastIndexOf(".");
-      var pokemonName = decodedName.substring(startIndex, endIndex);
-      return pokemonName;
-    }
+<script>
+  function extractPokemonName(filename) {
+    var decodedName = decodeURIComponent(filename);
+    var startIndex = decodedName.lastIndexOf("/") + 1;
+    var endIndex = decodedName.lastIndexOf(".");
+    var pokemonName = decodedName.substring(startIndex, endIndex);
+    return pokemonName;
+  }
 
-    function createPokemonElement(imgSrc) {
-      var pokemonName = extractPokemonName(imgSrc);
-      var elementDiv = document.createElement("div");
-      elementDiv.id = "element";
+  function createPokemonElement(imgSrc) {
+    var pokemonName = extractPokemonName(imgSrc);
+    var elementDiv = document.createElement("div");
+    elementDiv.className = "color-extractor"; // Adiciona a classe "color-extractor"
 
-      var imgDiv = document.createElement("div");
-      var imgElement = document.createElement("img");
-      imgElement.src = imgSrc;
-      imgElement.alt = "Imagem do Pokémon";
-      imgDiv.appendChild(imgElement);
-      elementDiv.appendChild(imgDiv);
+    var imgDiv = document.createElement("div");
+    var imgElement = document.createElement("img");
+    imgElement.src = imgSrc;
+    imgElement.alt = "Imagem do Pokémon";
+    imgDiv.appendChild(imgElement);
+    elementDiv.appendChild(imgDiv);
 
-      var descriptionDiv = document.createElement("div");
-      descriptionDiv.id = "description";
-      var nameDiv = document.createElement("div");
-      nameDiv.id = "name";
-      nameDiv.textContent = pokemonName;
-      descriptionDiv.appendChild(nameDiv);
-      elementDiv.appendChild(descriptionDiv);
+    var descriptionDiv = document.createElement("div");
+    descriptionDiv.id = "description";
+    var nameDiv = document.createElement("div");
+    nameDiv.id = "name";
+    nameDiv.textContent = pokemonName;
+    descriptionDiv.appendChild(nameDiv);
+    elementDiv.appendChild(descriptionDiv);
 
-      return elementDiv;
-    }
+    return elementDiv;
+  }
 
-    function loadPokemonElements() {
-      var middleDiv = document.getElementById("middle");
+  function loadPokemonElements() {
+    var middleDiv = document.getElementById("middle");
 
-      var imagesPath = "images/pokemon/";
+    var imagesPath = "images/pokemon/";
       var images = [
 "Shiny%20Mew.png",
 "Mew.png",
@@ -486,29 +489,57 @@ background: white;
 "Morgrem.png",
       ];
 
-      images.forEach(function (image) {
-        if (image === "<br>") {
-          var brElement = document.createElement("br");
-          middleDiv.appendChild(brElement);
-        } else {
-          var imgSrc = imagesPath + image;
-          var elementDiv = createPokemonElement(imgSrc);
-          middleDiv.appendChild(elementDiv);
-        }
-      });
-
-      // Atualiza o nome do Pokémon para cada elemento
-      var elements = document.querySelectorAll("#element");
-      for (var i = 0; i < elements.length; i++) {
-        var imgElement = elements[i].querySelector("img");
-        var imgSrc = imgElement.getAttribute("src");
-        var pokemonName = extractPokemonName(imgSrc);
-        var nameElement = elements[i].querySelector("#name");
-        nameElement.textContent = pokemonName;
+    images.forEach(function (image) {
+      if (image === "<br>") {
+        var brElement = document.createElement("br");
+        middleDiv.appendChild(brElement);
+      } else {
+        var imgSrc = imagesPath + image;
+        var elementDiv = createPokemonElement(imgSrc);
+        middleDiv.appendChild(elementDiv);
       }
+    });
+
+    // Função para extrair a cor principal e aplicá-la no CSS
+    function extractAndApplyColor() {
+      var colorThief = new ColorThief();
+
+      var elements = document.getElementsByClassName("color-extractor");
+      Array.from(elements).forEach(function (element) {
+        var imgElement = element.querySelector("img");
+
+        // Carrega a imagem e extrai a cor principal
+        var image = new Image();
+        image.onload = function () {
+          var color = colorThief.getColor(image);
+          var hexColor = rgbToHex(color[0], color[1], color[2]);
+          element.style.boxShadow = "0px 0px 25px 2px " + hexColor;
+        };
+        image.src = imgElement.src;
+      });
     }
 
-    loadPokemonElements();
-  </script>
+    // Função auxiliar para converter valores RGB para hexadecimal
+    function rgbToHex(r, g, b) {
+      return (
+        "#" +
+        componentToHex(r) +
+        componentToHex(g) +
+        componentToHex(b)
+      );
+    }
+
+    function componentToHex(c) {
+      var hex = c.toString(16);
+      return hex.length === 1 ? "0" + hex : hex;
+    }
+
+    // Chama a função de extração de cor ao carregar a página
+    window.addEventListener("load", extractAndApplyColor);
+  }
+
+  loadPokemonElements();
+</script>
+
 </body>
 </html>
