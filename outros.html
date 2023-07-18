@@ -45,7 +45,7 @@
   body {
   font-family: 'General Sans', sans-serif;
   font-size: 12px;
-  background:#b0b0b0;
+  background:linear-gradient(rgb(95 205 169 / 100%), rgb(0 0 0 / 35%));
   color: black;
   }
   #wrapper {
@@ -65,6 +65,19 @@
   text-align: center;
   Margin-bottom: 20px;
   }
+
+
+
+    .bgtext {
+  background-color: rgba(36, 36, 36, 0.75);
+  border-radius: 20px;
+  padding: 16px;
+  display:inline-block;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone; /* most browsers need -webkit */
+}
+
+    
   #title {
   font-size: 60px;
   font-weight: bold;
@@ -147,9 +160,9 @@
         Outros
       </div>
       <div id="title2">
-        <a href="index.html">Régis Cardoso</a>
+        <a class="bgtext" href="index.html">Régis Cardoso</a>
       </div>
-      <div id="subtitle">
+      <div class="bgtext" id="subtitle">
         [Muni Maggi]
       </div>
     </div>
