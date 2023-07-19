@@ -28,3 +28,8 @@
     font-family: 'HelveticaNeue';
     src: url('/fonts/HelveticaNeue.ttf') format('truetype');
 }   
+
+@font-face {
+    font-family: 'LibreBaskerville';
+    src: url('/fonts/LibreBaskerville-Regular.ttf') format('truetype');
+}   
