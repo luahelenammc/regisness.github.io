@@ -81,7 +81,12 @@
   -webkit-box-decoration-break: clone; /* most browsers need -webkit */
 }
     
-
+@keyframes blink{
+  0%   {border: #ca5ef8 solid 3px; }
+  25% {border: black solid 3px; }
+  75% {border: white solid 3px; }
+  100% {border: #84f416 solid 3px; }
+  }
     
   #picture {
 border-radius:25px;
@@ -380,7 +385,7 @@ Fotografias Artísticas
       
       <br>
       <a href="/outros.html">
-      <div id="element" style="background: linear-gradient(139deg, rgba(126,52,245,1) 0%, rgba(215,101,249,1) 100%);" class="outros">
+      <div id="element" style="background: linear-gradient(139deg, rgba(126,52,245,1) 0%, rgba(215,101,249,1) 100%); animation: blink 2s linear infinite;" class="outros">
         <div id="icon"><img src="images/outros.png" class="icon"></div>
         <div id="description">
           Outros
