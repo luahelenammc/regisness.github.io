@@ -247,21 +247,35 @@
     <div id="progressBarFill"></div>
   </div>
 
-  <script>
-    function toggleTask(checkbox) {
-      var taskItem = checkbox.parentNode;
-      taskItem.classList.toggle("checked");
-      updateProgressBar();
-    }
 
-    function updateProgressBar() {
-      var taskItems = document.querySelectorAll(".task-item");
-      var completedTaskItems = document.querySelectorAll(".task-item.checked");
-      var progressBarFill = document.getElementById("progressBarFill");
-      var percentage = (completedTaskItems.length / taskItems.length) * 100;
-      progressBarFill.style.width = percentage + "%";
-    }
-  </script>
+<script>
+  function toggleTask(taskItem) {
+    taskItem.classList.toggle("checked");
+    updateProgressBar();
+  }
+
+  var taskItems = document.querySelectorAll(".task-item");
+
+  for (var i = 0; i < taskItems.length; i++) {
+    var checkbox = taskItems[i].querySelector(".checkbox");
+    var taskTextSpan = taskItems[i].querySelector(".task-text");
+
+    checkbox.onclick = function () {
+      toggleTask(this.parentNode);
+    };
+
+    taskTextSpan.onclick = function () {
+      toggleTask(this.parentNode);
+    };
+  }
+
+  function updateProgressBar() {
+    var taskItems = document.querySelectorAll(".task-item");
+    var completedTaskItems = document.querySelectorAll(".task-item.checked");
+    var progressBarFill = document.getElementById("progressBarFill");
+    var percentage = (completedTaskItems.length / taskItems.length) * 100;
+    progressBarFill.style.width = percentage + "%";
+  }
+</script>
 </body>
-          </html>
-        
+</html>
