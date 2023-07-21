@@ -24,12 +24,12 @@
     var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
-        datasets: [{
-          data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff'],
-        }]
-      },
+    labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00','12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00','00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+    datasets: [{
+      data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#faffad', '#faffad', '#faffad', '#ffc400', '#ff9100']
+    }]
+  },
       options: {
         responsive: false,
         legend: {
@@ -54,13 +54,12 @@
       var currentTime = new Date();
       var currentDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), currentTime.getHours(), 0, 0); // Zerar os minutos e segundos
 
-      var isB = isDayB(currentDate);
-
       var elapsedTime = 0;
-      if (isB) {
-        elapsedTime = (currentDate - new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), startWorkHour, 0, 0)) / 3600000;
-      } else {
-        elapsedTime = intervalDuration + (currentDate - new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), endWorkHour, 0, 0)) / 3600000;
+
+      if (currentDate >= new Date('2023-07-21T06:00:00')) { // Verifica se a data atual é após o ponto de partida
+        var daysSinceStart = Math.floor((currentDate - new Date('2023-07-21T06:00:00')) / (24 * 60 * 60 * 1000)); // Número de dias que se passaram desde o ponto de partida
+        elapsedTime = daysSinceStart * intervalDuration; // Calcula o tempo total em horas desde o ponto de partida
+        elapsedTime += currentDate.getHours() - startWorkHour; // Adiciona o tempo parcial do dia atual (dia B)
       }
 
       elapsedTime %= intervalDuration;
@@ -78,6 +77,7 @@
         }
       }
 
+      myChart.data.labels = ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
       myChart.data.datasets[0].data = chartData;
       myChart.data.datasets[0].backgroundColor = chartColors;
       myChart.update();
