@@ -2,65 +2,68 @@
 <head>
   <style>
     body {
-    background:black;
-     color: #66fc03;
+      background:black;
+      color: #66fc03;
       font-family: 'HelveticaNeue-Medium';
     }
-    
-
   </style>
-<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="icon" type="image/x-icon" href="/images/briefcase.png">
-<title>Relógio de Folga</title>
-
+  <link rel="icon" type="image/x-icon" href="/images/briefcase.png">
+  <title>Relógio de Folga</title>
 </head>
 <body>
   <div align="center">
- <canvas id="myChart" width="400" height="400"></canvas>
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
-  
+    <canvas id="myChart" width="400" height="400"></canvas>
   </div>
 
-    <script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'pie',
-  data: {
-    labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00','12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00','00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
-    datasets: [{
-      data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#faffad', '#faffad', '#faffad', '#ffc400', '#ff9100']
-    }]
-  },
-  options: {
-    responsive: false,
-    legend: {
-      display: false
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  
+  <script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+        datasets: [{
+          data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff'],
+        }]
+      },
+      options: {
+        responsive: false,
+        legend: {
+          display: false
+        }
+      }
+    });
+
+    var startWorkHour = 6;
+    var endWorkHour = 18;
+    var hoursInDay = 24;
+
+    var currentTime = new Date();
+    var currentHour = currentTime.getHours();
+    var currentDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 0, 0, 0); // Zerar as horas, minutos e segundos
+
+    var firstDay = new Date('2023-07-21T06:00:00'); // Ajustar a data de início do período de folga
+    var lastDay = new Date('2023-07-22T18:00:00'); // Ajustar a data de término do período de folga
+
+    var elapsedTime = 0;
+
+    if (currentDate >= firstDay && currentDate <= lastDay) {
+      elapsedTime = (currentDate - firstDay) / 3600000; // elapsed hours since the first day
+      elapsedTime %= hoursInDay; // limitando ao número de horas em um dia (24)
+    } else if (currentDate > lastDay) {
+      elapsedTime = hoursInDay; // Se já passou do último dia de folga, setar o relógio para o início da folga seguinte
     }
-  }
-});
 
-var startWorkHour = 6;
-var endWorkHour = 18;
+    for (var i = 0; i < elapsedTime; i++) {
+      myChart.data.datasets[0].data[i] = 0;
+      myChart.data.datasets[0].backgroundColor[i] = '#8c8c8c';
+    }
 
-var currentTime = new Date();
-var currentDate = new Date();
-var firstDay = new Date('2023-02-16T06:00:00');
-var elapsedTime = (currentDate - firstDay) / 3600000; // elapsed hours since the first day
-
-var currentHour = currentTime.getHours();
-
-if (elapsedTime >= 0) {
-  var timeElapsed = elapsedTime % 36;
-  for (var i = 0; i < timeElapsed; i++) {
-    myChart.data.datasets[0].data[i] = 1;
-    myChart.data.datasets[0].backgroundColor[i] = '#8c8c8c';
-  }
-  myChart.update();
-}
+    myChart.update();
   </script>
   
 </body>
