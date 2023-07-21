@@ -24,10 +24,10 @@
     var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+        labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
         datasets: [{
-          data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff'],
+          data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff'],
         }]
       },
       options: {
@@ -65,16 +65,21 @@
 
       elapsedTime %= intervalDuration;
 
-      for (var i = 0; i < elapsedTime; i++) {
-        myChart.data.datasets[0].data[i] = 0;
-        myChart.data.datasets[0].backgroundColor[i] = '#8c8c8c';
+      var chartData = [];
+      var chartColors = [];
+
+      for (var i = 0; i < intervalDuration; i++) {
+        if (i < elapsedTime) {
+          chartData.push(0);
+          chartColors.push('#8c8c8c');
+        } else {
+          chartData.push(1);
+          chartColors.push('#00f7ff');
+        }
       }
 
-      for (var i = elapsedTime; i < intervalDuration; i++) {
-        myChart.data.datasets[0].data[i] = 1;
-        myChart.data.datasets[0].backgroundColor[i] = '#00f7ff';
-      }
-
+      myChart.data.datasets[0].data = chartData;
+      myChart.data.datasets[0].backgroundColor = chartColors;
       myChart.update();
     }
 
