@@ -24,10 +24,10 @@
     var myChart = new Chart(ctx, {
       type: 'pie',
       data: {
-        labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '00:00', '01:00', '02:00', '03:00', '04:00', '05:00'],
+        labels: ['06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00'],
         datasets: [{
-          data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-          backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff'],
+          data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          backgroundColor: ['#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff', '#00f7ff'],
         }]
       },
       options: {
@@ -41,29 +41,35 @@
     var startWorkHour = 6;
     var endWorkHour = 18;
     var hoursInDay = 24;
+    var intervalDuration = 36; // horas do intervalo de folga
 
-    var currentTime = new Date();
-    var currentHour = currentTime.getHours();
-    var currentDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 0, 0, 0); // Zerar as horas, minutos e segundos
+    function updateChart() {
+      var currentTime = new Date();
+      var currentHour = currentTime.getHours();
+      var currentDate = new Date(currentTime.getFullYear(), currentTime.getMonth(), currentTime.getDate(), 0, 0, 0); // Zerar as horas, minutos e segundos
 
-    var firstDay = new Date('2023-07-21T06:00:00'); // Ajustar a data de início do período de folga
-    var lastDay = new Date('2023-07-22T18:00:00'); // Ajustar a data de término do período de folga
+      var firstDay = new Date('2023-07-21T06:00:00'); // Ajustar a data de início do período de folga
 
-    var elapsedTime = 0;
+      var elapsedTime = 0;
 
-    if (currentDate >= firstDay && currentDate <= lastDay) {
-      elapsedTime = (currentDate - firstDay) / 3600000; // elapsed hours since the first day
-      elapsedTime %= hoursInDay; // limitando ao número de horas em um dia (24)
-    } else if (currentDate > lastDay) {
-      elapsedTime = hoursInDay; // Se já passou do último dia de folga, setar o relógio para o início da folga seguinte
+      if (currentDate >= firstDay) {
+        elapsedTime = (currentDate - firstDay) / 3600000; // elapsed hours since the first day
+        elapsedTime %= intervalDuration; // limitando ao número de horas do intervalo de folga
+      }
+
+      for (var i = 0; i < elapsedTime; i++) {
+        myChart.data.datasets[0].data[i] = 0;
+        myChart.data.datasets[0].backgroundColor[i] = '#8c8c8c';
+      }
+
+      myChart.update();
     }
 
-    for (var i = 0; i < elapsedTime; i++) {
-      myChart.data.datasets[0].data[i] = 0;
-      myChart.data.datasets[0].backgroundColor[i] = '#8c8c8c';
-    }
+    // Chamada inicial
+    updateChart();
 
-    myChart.update();
+    // Atualizar a cada hora
+    setInterval(updateChart, 3600000);
   </script>
   
 </body>
