@@ -65,7 +65,7 @@ text-decoration: underline;
   <div id="relogio"></div>
   
    <br><br>
-<div>Considerando as 12 horas, sem horas de descanso</div>
+<div>Considerando as 9 horas, sem horas de descanso</div>
    
    <br><br>
    <a href="/relogio.html" target="_blank">Relógio</a></div>
@@ -78,10 +78,10 @@ text-decoration: underline;
 const salario = document.querySelector("#salario");
 const relogio = document.querySelector("#relogio");
 
-const valorPorHora = 11.72894;
-const horaInicio = 18;
-const horaFim = 6;
-const valorMaximo = 140.74;
+const valorPorHora = 23.1148;
+const horaInicio = 7;
+const horaFim = 16;
+const valorMaximo = 208.03;
 
 setInterval(() => {
   let data = new Date();
@@ -90,8 +90,8 @@ setInterval(() => {
 
   relogio.textContent = data.toLocaleTimeString();
 
-  if (horaAtual >= horaInicio || horaAtual < horaFim) {
-    valor = (horaAtual - horaInicio + 24) % 24 * valorPorHora;
+  if (horaAtual >= horaInicio && horaAtual <= horaFim) {
+    valor = (horaAtual - horaInicio) * valorPorHora;
   }
 
   if (valor > valorMaximo) {
@@ -110,8 +110,8 @@ setInterval(() => {
 
   relogio.textContent = data.toLocaleTimeString();
 
-  if (horaAtual >= horaInicio || horaAtual < horaFim) {
-    valor = (horaAtual - horaInicio + 24) % 24 * valorPorHora;
+  if (horaAtual >= horaInicio && horaAtual <= horaFim) {
+    valor = (horaAtual - horaInicio) * valorPorHora;
   }
 
   if (valor > valorMaximo) {
@@ -120,7 +120,7 @@ setInterval(() => {
 
   salario.textContent = `R$ ${valor.toFixed(2)}`;
 
-  let percentual = valor / valorMaximo * 100;
+  let percentual = (valor / valorMaximo) * 100;
   porcentagem.textContent = `${percentual.toFixed(2)}%`;
 }, 1000);
 
