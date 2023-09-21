@@ -37,8 +37,7 @@
  
 
     <script>
-
-   var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
@@ -47,11 +46,11 @@ var myChart = new Chart(ctx, {
       '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45',
       '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45',
       '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45',
-      '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45'
+      '15:00', '15:15', '15:30', '15:45'
     ],
     datasets: [{
-      data: new Array(40).fill(0),
-      backgroundColor: new Array(40).fill('#990000')
+      data: new Array(36).fill(0),
+      backgroundColor: new Array(36).fill('#990000')
     }]
   },
   options: {
@@ -76,14 +75,14 @@ if (currentHour < startWorkHour) {
 if (currentHour >= startWorkHour && currentHour <= endWorkHour) {
   timeElapsed = (currentHour - startWorkHour) * 60 + currentMinute;
   var intervalsElapsed = Math.floor(timeElapsed / 15);
-  for (var i = intervalsElapsed + 1; i < 40; i++) {
-    if (myChart.data.datasets[0].data[i] !== undefined) { // Verifica se não é undefined
+  for (var i = intervalsElapsed + 1; i < 36; i++) {
+    if (myChart.data.datasets[0].data[i] !== undefined) {
       myChart.data.datasets[0].data[i] = 1;
       myChart.data.datasets[0].backgroundColor[i] = '#dddddd';
     }
   }
-  for (var i = 0; i <= intervalsElapsed; i++) {
-    if(i == intervalsElapsed) {
+  for (var i = 0; i < intervalsElapsed; i++) { // Corrigido para < em vez de <=
+    if(i == intervalsElapsed - 1) { // Corrigido para -1
       myChart.data.datasets[0].backgroundColor[i] = '#00ffff';
     } else {
       myChart.data.datasets[0].backgroundColor[i] = '#00ff00';
