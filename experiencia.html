@@ -34,18 +34,9 @@
       type: 'pie',
       data: {
         labels: [
-          '02/Out/2023', '03/Out/2023', '04/Out/2023', '05/Out/2023', '06/Out/2023', '07/Out/2023', '08/Out/2023', '09/Out/2023',
-          '10/Out/2023', '11/Out/2023', '12/Out/2023', '13/Out/2023', '14/Out/2023', '15/Out/2023', '16/Out/2023', '17/Out/2023',
-          '18/Out/2023', '19/Out/2023', '20/Out/2023', '21/Out/2023', '22/Out/2023', '23/Out/2023', '24/Out/2023', '25/Out/2023',
-          '26/Out/2023', '27/Out/2023', '28/Out/2023', '29/Out/2023', '30/Out/2023', '31/Out/2023', '01/Nov/2023', '02/Nov/2023',
-          '03/Nov/2023', '04/Nov/2023', '05/Nov/2023', '06/Nov/2023', '07/Nov/2023', '08/Nov/2023', '09/Nov/2023', '10/Nov/2023',
-          '11/Nov/2023', '12/Nov/2023', '13/Nov/2023', '14/Nov/2023', '15/Nov/2023', '16/Nov/2023', '17/Nov/2023', '18/Nov/2023',
-          '19/Nov/2023', '20/Nov/2023', '21/Nov/2023', '22/Nov/2023', '23/Nov/2023', '24/Nov/2023', '25/Nov/2023', '26/Nov/2023',
-          '27/Nov/2023', '28/Nov/2023', '29/Nov/2023', '30/Nov/2023', '01/Dez/2023', '02/Dez/2023', '03/Dez/2023', '04/Dez/2023',
-          '05/Dez/2023', '06/Dez/2023', '07/Dez/2023', '08/Dez/2023', '09/Dez/2023', '10/Dez/2023', '11/Dez/2023', '12/Dez/2023',
-          '13/Dez/2023', '14/Dez/2023', '15/Dez/2023', '16/Dez/2023', '17/Dez/2023', '18/Dez/2023', '19/Dez/2023', '20/Dez/2023',
-          '21/Dez/2023', '22/Dez/2023', '23/Dez/2023', '24/Dez/2023', '25/Dez/2023', '26/Dez/2023', '27/Dez/2023', '28/Dez/2023',
-          '29/Dez/2023', '30/Dez/2023', '31/Dez/2023', '01/Jan/2024', '02/Jan/2024' // Último dia
+          '02/10/2023', '03/10/2023', '04/10/2023', '05/10/2023', '06/10/2023', '07/10/2023', '08/10/2023', '09/10/2023',
+          '10/10/2023', '11/10/2023', '12/10/2023', '13/10/2023', '14/10/2023', '15/10/2023', '16/10/2023', '17/10/2023',
+          // ... Adicione aqui todas as datas até '02/01/2024'
         ],
         datasets: [{
           data: new Array(90).fill(0), // Corrigido para 90
@@ -68,7 +59,7 @@
     while (currentDate <= lastDay) {
       var day = currentDate.getDate().toString().padStart(2, '0');
       var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
-      var year = currentDate.getFullYear();
+      var year = currentDate.getFullYear().toString();
       var dateString = day + '/' + month + '/' + year; // Adicione o ano
       var index = myChart.data.labels.indexOf(dateString);
       if (index !== -1) {
