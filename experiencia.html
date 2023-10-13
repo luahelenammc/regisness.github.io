@@ -25,6 +25,7 @@
     <button onclick="location.reload()">Refresh</button>
     <br><br>
     <a href="https://www.regiscardoso.com.br/salario.html" target="_blank">Salário</a>
+    <p id="progress">0%</p> <!-- Adicionei um elemento <p> para mostrar o progresso -->
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
@@ -73,17 +74,24 @@
       var index = myChart.data.labels.indexOf(dateString);
       if (index !== -1) {
         myChart.data.datasets[0].data[index] = 1;
-        if (currentDate <= currentTime) {
+        if (currentDate < currentTime) {
           myChart.data.datasets[0].backgroundColor[index] = '#00ff00'; // Dias passados em verde
+          intervalsElapsed++;
+        } else if (currentDate.toDateString() === currentTime.toDateString()) {
+          myChart.data.datasets[0].backgroundColor[index] = '#12dbff'; // Dia atual em azul
         } else {
-          myChart.data.datasets[0].backgroundColor[index] = '#1c1c1c'; // Dias futuros
+          myChart.data.datasets[0].backgroundColor[index] = '#1c1c1c'; // Dias futuros em cinza
         }
-        intervalsElapsed++;
       }
       currentDate.setDate(currentDate.getDate() + 1);
     }
 
     myChart.update();
+
+    // Calcula a porcentagem de dias passados
+    var percentComplete = (intervalsElapsed / 90) * 100;
+    document.getElementById('progress').textContent = percentComplete.toFixed(2) + '%';
+
   </script>
 </body>
 </html>
