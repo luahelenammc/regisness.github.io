@@ -39,8 +39,7 @@
     <script>
 
 
-
-      const currentTime = new Date();
+const currentTime = new Date();
 const startFreeHour = 16;
 const endFreeHour = 24;
 const currentHour = currentTime.getHours();
@@ -56,15 +55,10 @@ const labels = [
 ];
 
 const backgroundColors = new Array(32).fill('#990000');
-const data = new Array(32).fill(0);
+const data = new Array(32).fill(1);
 
-for (let i = intervalsElapsed + 1; i < 32; i++) {
-  data[i] = 1;
-  backgroundColors[i] = '#dddddd';
-}
-
-for (let i = 0; i < intervalsElapsed; i++) {
-  if (i === intervalsElapsed - 1) {
+for (let i = intervalsElapsed; i < 32; i++) {
+  if (i === intervalsElapsed) {
     backgroundColors[i] = '#00ffff';
   } else {
     backgroundColors[i] = '#00ff00';
@@ -81,7 +75,7 @@ const newData = {
 };
 
 console.log(newData);
-      
+  
 
 
   </script>
