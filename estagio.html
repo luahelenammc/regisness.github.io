@@ -15,14 +15,14 @@
 <script>
 function calculateWork() {
     const startDate = new Date();
-    const endDate = new Date('November 17, 2023');
+    const endDate = new Date('November 17, 2023 23:59:59'); // Inclui todo o último dia
     document.getElementById('startDate').textContent = startDate.toLocaleDateString();
 
     const totalWorkDays = countWorkdays(startDate, endDate);
     document.getElementById('workdays').textContent = totalWorkDays;
 
     const weeks = totalWorkDays / 5;
-    const hoursPerWeek = (150 / weeks).toFixed(2);
+    const hoursPerWeek = weeks > 0 ? (150 / weeks).toFixed(2) : 'N/A'; // Evita divisão por zero
     document.getElementById('hoursPerWeek').textContent = hoursPerWeek;
 }
 
