@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Calculador de Horas de Estágio</title>
+<script>
+function calculateHours() {
+    const endDate = new Date(2023, 10, 17); // 17 de Novembro de 2023 (os meses são indexados a partir de 0, então Novembro é 10)
+    const today = new Date();
+    const millisecondsPerDay = 86400000;
+    const weekdaysCount = countWeekdays(today, endDate);
+
+    const totalHours = 150;
+    const weeks = weekdaysCount / 5;
+    const hoursPerWeek = totalHours / weeks;
+
+    document.getElementById('result').innerHTML = `Você precisa trabalhar aproximadamente ${hoursPerWeek.toFixed(2)} horas por semana.`;
+}
+
+function countWeekdays(startDate, endDate) {
+    let count = 0;
+    let date = new Date(startDate.getTime());
+    
+    while (date <= endDate) {
+        const dayOfWeek = date.getDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) { // 0 = Domingo, 6 = Sábado
+            count++;
+        }
+        date.setDate(date.getDate() + 1);
+    }
+
+    return count;
+}
+</script>
+</head>
+<body>
+<h1>Calculador de Horas de Estágio</h1>
+<button onclick="calculateHours()">Calcular Horas por Semana</button>
+<p id="result"></p>
+</body>
+</html>
