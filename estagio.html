@@ -14,15 +14,19 @@
         min-height: 100vh;
         justify-content: center;
         margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
     }
 
     h1 {
         border-bottom: 2px solid green;
+        text-align: center;
     }
 
     p {
         font-size: 16px;
         margin: 10px 0;
+        text-align: center;
     }
 
     #startDate, #workdays, #hoursPerWeek {
@@ -37,6 +41,7 @@
         cursor: pointer;
         font-weight: bold;
         transition: background-color 0.3s;
+        font-size: 16px;
     }
 
     button:hover {
@@ -51,6 +56,25 @@
         border: 2px solid green;
         border-radius: 5px;
         margin: 5px;
+        text-align: center;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 24px;
+        }
+        p {
+            font-size: 14px;
+        }
+        button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+        .digital-display {
+            font-size: 14px;
+            padding: 8px;
+        }
     }
 </style>
 </head>
