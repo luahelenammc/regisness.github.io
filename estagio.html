@@ -3,13 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <title>Calculadora de Horas de Estágio</title>
+<style>
+    body {
+        font-family: 'Courier New', monospace;
+        background-color: black;
+        color: green;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        justify-content: center;
+        margin: 0;
+    }
+
+    h1 {
+        border-bottom: 2px solid green;
+    }
+
+    p {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    #startDate, #workdays, #hoursPerWeek {
+        font-weight: bold;
+    }
+
+    button {
+        background-color: green;
+        color: black;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: lime;
+    }
+
+    .digital-display {
+        font-family: 'Digital-7', monospace; /* Esta é uma fonte que imita displays digitais */
+        background-color: #111;
+        color: #0F0;
+        padding: 10px;
+        border: 2px solid green;
+        border-radius: 5px;
+        margin: 5px;
+    }
+</style>
 </head>
 <body>
 <h1>Calculadora de Horas de Estágio</h1>
-<p>Data de Início: <span id="startDate"></span></p>
-<p>Data de Término: 17 de novembro de 2024</p>
-<p>Dias úteis até a data de término: <span id="workdays"></span></p>
-<p>Horas necessárias por semana: <span id="hoursPerWeek"></span></p>
+<p>Data de Início: <span id="startDate" class="digital-display"></span></p>
+<p>Data de Término: <span class="digital-display">17 de novembro de 2024</span></p>
+<p>Dias úteis até a data de término: <span id="workdays" class="digital-display"></span></p>
+<p>Horas necessárias por semana: <span id="hoursPerWeek" class="digital-display"></span></p>
 <button onclick="calculateWork()">Calcular Horas</button>
 
 <script>
