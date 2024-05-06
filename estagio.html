@@ -1,3 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora de Horas de Estágio</title>
+</head>
+<body>
+<h1>Calculadora de Horas de Estágio</h1>
+<p>Data de Início: <span id="startDate"></span></p>
+<p>Data de Término: 17 de novembro de 2023</p>
+<p>Dias úteis até a data de término: <span id="workdays"></span></p>
+<p>Horas necessárias por semana: <span id="hoursPerWeek"></span></p>
+<button onclick="calculateWork()">Calcular Horas</button>
+
+<script>
 function calculateWork() {
     const startDate = new Date();
     const endDate = new Date('November 17, 2023 23:59:59');
@@ -32,3 +47,6 @@ function countWorkdays(start, end) {
     }
     return count;
 }
+</script>
+</body>
+</html>
